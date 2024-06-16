@@ -8,9 +8,9 @@ const server = createServer(app);
 
 const PORT = 3000;
 
+app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static('public'));
 initSocket(server);
 
 app.get('/', (req, res) => {
@@ -22,6 +22,7 @@ server.listen(PORT, async () => {
 
   try {
     const assets = await loadGameAssets();
+    console.log('Assets loaded successfully');
   } catch (error) {
     console.error('Failed to load game assets:', error);
   }
